@@ -1,1 +1,361 @@
-https://drive.google.com/file/d/1e0IFktSfVVAGY4J0bA6AjbDbn7ymVbMl/view?usp=sharing
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fountain AE Cheat Sheet</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f0f4f8; color: #1a2b3c; font-size: 15px; line-height: 1.6; }
+  .top-bar { background: #1155CC; padding: 20px 32px; display: flex; align-items: center; gap: 16px; }
+  .top-bar-logo { width: 36px; height: 36px; background: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; color: #1155CC; letter-spacing: -0.5px; flex-shrink: 0; }
+  .top-bar-title { color: white; font-size: 18px; font-weight: 600; }
+  .top-bar-sub { color: rgba(255,255,255,0.7); font-size: 13px; margin-top: 2px; }
+  .tab-bar { background: #0d47a1; display: flex; overflow-x: auto; padding: 0 24px; gap: 2px; }
+  .tab-bar::-webkit-scrollbar { display: none; }
+  .tab { padding: 14px 18px; color: rgba(255,255,255,0.7); font-size: 13px; font-weight: 500; cursor: pointer; border-bottom: 3px solid transparent; white-space: nowrap; transition: all 0.15s; user-select: none; }
+  .tab:hover { color: white; background: rgba(255,255,255,0.08); }
+  .tab.active { color: white; border-bottom-color: #82b1ff; }
+  .content { max-width: 900px; margin: 0 auto; padding: 28px 24px; }
+  .page { display: none; }
+  .page.active { display: block; }
+  .page-intro { background: #e8f0fe; border-left: 4px solid #1155CC; border-radius: 0 8px 8px 0; padding: 14px 18px; margin-bottom: 28px; color: #1a2b3c; font-size: 14px; }
+  .section { background: white; border-radius: 12px; border: 1px solid #dde3ea; margin-bottom: 20px; overflow: hidden; }
+  .section-header { background: #1155CC; color: white; padding: 14px 20px; display: flex; align-items: center; gap: 10px; }
+  .section-header-icon { width: 28px; height: 28px; background: rgba(255,255,255,0.2); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+  .section-title { font-size: 15px; font-weight: 600; }
+  .section-sub { font-size: 12px; color: rgba(255,255,255,0.75); margin-top: 2px; }
+  .section-body { padding: 20px; }
+  .tag { display: inline-block; background: #e8f0fe; color: #1155CC; font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 4px; margin-bottom: 14px; letter-spacing: 0.3px; }
+  .tag.amber { background: #fff8e1; color: #b45309; }
+  .plain-explain { background: #f8f9ff; border: 1px solid #c5d4f5; border-radius: 8px; padding: 14px 16px; margin-bottom: 16px; font-size: 14px; color: #2a3f6b; line-height: 1.65; }
+  .plain-explain-label { font-size: 11px; font-weight: 700; color: #1155CC; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .bullet-list { list-style: none; padding: 0; }
+  .bullet-list li { padding: 5px 0 5px 20px; position: relative; font-size: 14px; color: #374151; border-bottom: 1px solid #f3f4f6; }
+  .bullet-list li:last-child { border-bottom: none; }
+  .bullet-list li::before { content: ''; position: absolute; left: 0; top: 13px; width: 7px; height: 7px; background: #1155CC; border-radius: 50%; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+  .info-block { background: #f8f9fa; border-radius: 8px; padding: 14px; }
+  .info-block-label { font-size: 11px; font-weight: 700; color: #6b7280; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 8px; }
+  .master-line { background: #1155CC; color: white; border-radius: 10px; padding: 20px 22px; margin-bottom: 20px; font-size: 15px; line-height: 1.7; font-style: italic; }
+  .master-line-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.7); margin-bottom: 8px; font-style: normal; }
+  .pillar { border-left: 4px solid #1155CC; padding: 14px 16px; margin-bottom: 14px; background: #f8f9ff; border-radius: 0 8px 8px 0; }
+  .pillar-num { font-size: 11px; font-weight: 700; color: #1155CC; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .pillar-title { font-size: 15px; font-weight: 600; color: #1a2b3c; margin-bottom: 6px; }
+  .pillar-body { font-size: 14px; color: #374151; line-height: 1.6; }
+  .qa-item { border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 10px; overflow: hidden; }
+  .qa-question { padding: 13px 16px; font-size: 14px; font-weight: 500; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: white; user-select: none; }
+  .qa-question:hover { background: #f8f9fa; }
+  .qa-question .arrow { font-size: 12px; color: #9ca3af; transition: transform 0.2s; }
+  .qa-question.open .arrow { transform: rotate(180deg); }
+  .qa-answer { display: none; padding: 0 16px 14px; font-size: 14px; color: #374151; line-height: 1.65; background: white; }
+  .qa-answer.open { display: block; }
+  .dos-donts { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .do-col { background: #e6f4ea; border-radius: 8px; padding: 14px 16px; }
+  .dont-col { background: #fce8e6; border-radius: 8px; padding: 14px 16px; }
+  .dd-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .do-col .dd-label { color: #1e7e34; }
+  .dont-col .dd-label { color: #c62828; }
+  .dd-item { font-size: 13px; color: #374151; padding: 5px 0; border-bottom: 1px solid rgba(0,0,0,0.07); line-height: 1.5; }
+  .dd-item:last-child { border-bottom: none; }
+  .cue-card { border: 1px solid #e5e7eb; border-radius: 10px; margin-bottom: 14px; overflow: hidden; }
+  .cue-trigger { background: #f0f4f8; padding: 11px 16px; font-size: 12px; font-weight: 600; color: #6b7280; text-transform: uppercase; letter-spacing: 0.4px; border-bottom: 1px solid #e5e7eb; }
+  .cue-line { padding: 13px 16px; font-size: 14px; color: #1a2b3c; line-height: 1.6; border-bottom: 1px solid #f3f4f6; font-style: italic; }
+  .cue-why { padding: 10px 16px; font-size: 13px; color: #6b7280; background: #fafafa; }
+  .sku-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  .sku-table th { background: #1155CC; color: white; padding: 11px 14px; text-align: left; font-weight: 500; font-size: 13px; }
+  .sku-table td { padding: 11px 14px; border-bottom: 1px solid #f0f0f0; vertical-align: top; color: #374151; }
+  .sku-table tr:last-child td { border-bottom: none; }
+  .sku-table tr:hover td { background: #f8f9ff; }
+  .sku-old { font-size: 12px; color: #9ca3af; text-decoration: line-through; }
+  .gloss-item { padding: 14px 0; border-bottom: 1px solid #f3f4f6; }
+  .gloss-item:last-child { border-bottom: none; }
+  .gloss-term { font-size: 14px; font-weight: 600; color: #1155CC; margin-bottom: 4px; }
+  .gloss-def { font-size: 14px; color: #374151; line-height: 1.6; }
+  .agent-card { border: 1px solid #e5e7eb; border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
+  .agent-header { display: flex; align-items: center; gap: 14px; padding: 18px 20px; }
+  .agent-avatar { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; flex-shrink: 0; }
+  .anna .agent-avatar { background: #e8f0fe; color: #1155CC; }
+  .sam .agent-avatar { background: #e6f4ea; color: #1e7e34; }
+  .emma .agent-avatar { background: #fff8e1; color: #b45309; }
+  .anna .agent-header { border-bottom: 3px solid #1155CC; }
+  .sam .agent-header { border-bottom: 3px solid #1e7e34; }
+  .emma .agent-header { border-bottom: 3px solid #b45309; }
+  .agent-name { font-size: 16px; font-weight: 600; }
+  .agent-role { font-size: 13px; color: #6b7280; margin-top: 2px; }
+  .agent-body { padding: 18px 20px; }
+  .standalone-box { background: #fff8e1; border: 1px solid #fcd34d; border-radius: 8px; padding: 14px 16px; margin-top: 14px; }
+  .standalone-box-label { font-size: 11px; font-weight: 700; color: #b45309; text-transform: uppercase; letter-spacing: 0.4px; margin-bottom: 6px; }
+  .standalone-box p { font-size: 14px; color: #374151; line-height: 1.6; }
+  .avail-badge { display: inline-block; background: #e6f4ea; color: #1e7e34; font-size: 11px; font-weight: 600; padding: 3px 9px; border-radius: 4px; margin-left: 10px; }
+  .ground-rules { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-bottom: 24px; }
+  .ground-rule { background: white; border: 1px solid #e5e7eb; border-radius: 8px; padding: 14px; display: flex; gap: 12px; align-items: flex-start; }
+  .gr-num { width: 26px; height: 26px; background: #1155CC; color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; flex-shrink: 0; }
+  .gr-text { font-size: 13px; color: #374151; line-height: 1.5; }
+  .footer { text-align: center; padding: 24px; font-size: 12px; color: #9ca3af; border-top: 1px solid #e5e7eb; margin-top: 20px; background: white; border-radius: 0 0 12px 12px; }
+  @media (max-width: 600px) {
+    .two-col { grid-template-columns: 1fr; }
+    .dos-donts { grid-template-columns: 1fr; }
+    .ground-rules { grid-template-columns: 1fr; }
+    .content { padding: 16px; }
+    .tab { padding: 12px 14px; font-size: 12px; }
+  }
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <div class="top-bar-logo">F</div>
+  <div>
+    <div class="top-bar-title">Fountain AE Cheat Sheet</div>
+    <div class="top-bar-sub">Internal Use Only · AE Enablement · June 2026</div>
+  </div>
+</div>
+<div class="tab-bar">
+  <div class="tab active" onclick="showTab('sell')">What We Sell</div>
+  <div class="tab" onclick="showTab('agents')">The Three Agents</div>
+  <div class="tab" onclick="showTab('security')">AI Security</div>
+  <div class="tab" onclick="showTab('cues')">Demo Cues</div>
+  <div class="tab" onclick="showTab('sku')">SKU Map & Glossary</div>
+</div>
+<div class="content">
+<div id="page-sell" class="page active">
+  <div class="page-intro">You don't need to memorize every feature — just the story. Here's every product in plain English, with a ready-to-use explanation and the key things it does.</div>
+  <div class="section">
+    <div class="section-header"><div class="section-header-icon">&#128269;</div><div><div class="section-title">Sourcing</div><div class="section-sub">Where candidates come from — and how to stop wasting budget finding them</div></div></div>
+    <div class="section-body">
+      <div class="tag">Legacy SKU: Source</div>
+      <div class="plain-explain"><div class="plain-explain-label">Say this</div>"Instead of logging into 10 different job boards and guessing where to spend your money, Sourcing puts it all in one place. It tracks which boards are actually getting you hires, automatically pauses spend when you have enough applicants, and uses AI to recommend where to post next."</div>
+      <ul class="bullet-list">
+        <li>Unified dashboard showing all job board performance and spend in one view</li>
+        <li>Auto-pauses ad spend the moment hiring goals are met</li>
+        <li>Cue analyzes your data and recommends where and how much to spend</li>
+        <li>Real-time cost-per-hire, cost-per-applicant, and conversion tracking by channel</li>
+      </ul>
+      <div class="two-col"><div class="info-block"><div class="info-block-label">Best for</div>Companies spending on job boards with no visibility into what's working.</div><div class="info-block"><div class="info-block-label">Common trigger</div>"We post to Indeed and just hope for the best."</div></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header"><div class="section-header-icon">&#128101;</div><div><div class="section-title">CRM (Pool)</div><div class="section-sub">Your talent bench — the people who've already raised their hand</div></div></div>
+    <div class="section-body">
+      <div class="tag">Legacy SKU: Pool</div>
+      <div class="plain-explain"><div class="plain-explain-label">Say this</div>"Before you spend a dollar on a job board, Fountain checks if you already have the right person. Pool is a database of everyone who's ever applied, expressed interest, or been referred. When you have a new opening, you message them first — for free."</div>
+      <ul class="bullet-list">
+        <li>Stores and segments past applicants, former workers, silver medalists, and referred candidates</li>
+        <li>AI skill matching — surfaces the right people for a new opening automatically</li>
+        <li>Job Router: routes candidates to the best-fit role automatically</li>
+        <li>Full conversation history across every touchpoint</li>
+      </ul>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header"><div class="section-header-icon">&#128196;</div><div><div class="section-title">ATS</div><div class="section-sub">The core hiring system — from application to offer letter</div></div></div>
+    <div class="section-body">
+      <div class="tag">Legacy SKUs: Hire, HireGo, Compliance workflows, Referrals</div>
+      <div class="plain-explain"><div class="plain-explain-label">Say this</div>"This is the core hiring system. Candidates apply, get screened, interview, and receive an offer — all in one place. Designed specifically for hourly, frontline workers — not office roles."</div>
+      <ul class="bullet-list">
+        <li>Configurable application flow with knockout questions, scoring, and logic branching</li>
+        <li>AI scoring on every applicant — recruiter sees a ranked list, not a sea of names</li>
+        <li>Self-scheduling for interviews — candidates pick their own slot</li>
+        <li>HireGo: simplified hiring manager view — interviews, responses, one-click decisions</li>
+        <li>Built-in referral program — workers share openings via SMS, earn bonuses</li>
+        <li>Supports 40+ languages, QR code apply, text-to-apply, chat apply</li>
+      </ul>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header"><div class="section-header-icon">&#127381;</div><div><div class="section-title">Onboarding</div><div class="section-sub">Getting new hires to Day 1 — and keeping them past Day 90</div></div></div>
+    <div class="section-body">
+      <div class="tag">Legacy SKUs: Onboard, I-9, Compliance</div>
+      <div class="plain-explain"><div class="plain-explain-label">Say this</div>"Most onboarding is a stack of PDFs emailed to someone who never checks email. Fountain Onboarding is mobile-first, personalized, and automated. New hires get a text, complete everything on their phone, and show up on Day 1 ready to work."</div>
+      <ul class="bullet-list">
+        <li>Mobile-first — no app download, no password, just a text link</li>
+        <li>Personalized flows by location, role, or any criteria</li>
+        <li>I-9 built in — pre-populated from application data, direct E-Verify integration</li>
+        <li>Dashboard showing every new hire's status — green/yellow/red at a glance</li>
+        <li>UPS case study: 98% I-9 complete before Day 1 across hundreds of thousands of workers</li>
+      </ul>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header"><div class="section-header-icon">&#128197;</div><div><div class="section-title">Shift &amp; Scheduling</div><div class="section-sub">Build, publish, and manage schedules — without the spreadsheet chaos</div></div></div>
+    <div class="section-body">
+      <div class="tag">Legacy SKU: Shift</div>
+      <div class="plain-explain"><div class="plain-explain-label">Say this</div>"Instead of a manager manually building a schedule in Excel, Fountain Shift lets you upload a labor plan and the AI builds the schedule for you. Workers claim shifts from their phone, top performers get first access to peak hours."</div>
+      <ul class="bullet-list">
+        <li>Cue builds the schedule from your labor plan — you approve it, you don't build it</li>
+        <li>Rules engine — only top performers can see peak-hour shifts; block overtime automatically</li>
+        <li>Reliability score — attendance history per worker, used by AI for scheduling</li>
+        <li>Differentiator pay and incentive payouts via rule-based logic</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer">Fountain Internal · AE Enablement · June 2026</div>
+</div>
+<div id="page-agents" class="page">
+  <div class="page-intro">Agents are AI teammates that do specific jobs 24/7. Sold as add-ons to core products, or standalone where applicable.</div>
+  <div class="agent-card anna">
+    <div class="agent-header"><div class="agent-avatar">A</div><div><div class="agent-name">Anna — AI Recruiter</div><div class="agent-role">Conducts screening interviews automatically, day or night</div></div><div style="margin-left:auto;"><span class="tag">Legacy: AI Rec</span></div></div>
+    <div class="agent-body">
+      <div class="plain-explain"><div class="plain-explain-label">Say this</div>"Anna calls your candidates within minutes of applying and conducts a real voice screening interview. She asks your questions, follows up on vague answers, and sends back a score, transcript, and list of qualifications. Most interviews happen between 9pm and 5am — your team wakes up with interviews already done."</div>
+      <ul class="bullet-list">
+        <li>Anna never makes a hiring decision — a human always reviews and decides</li>
+        <li>Candidates can opt into Anna or choose a human recruiter — consent always built in</li>
+        <li>Questions are written by your team — Anna does not generate them</li>
+        <li>Bias checks run continuously; she doesn't have good days or bad days</li>
+        <li>Bilingual — conducts interviews in the candidate's preferred language</li>
+      </ul>
+      <div class="standalone-box"><div class="standalone-box-label">Selling Anna Standalone (into Workday, Dayforce, UKG)</div><p>Candidates apply through their existing ATS. Fountain catches them at screening — Anna interviews, results sync back. Team never leaves their current system.</p><p style="margin-top:10px; font-weight:500; color:#1a2b3c;">Recommend full ATS instead if: customer is also frustrated with their current ATS.</p></div>
+    </div>
+  </div>
+  <div class="agent-card sam">
+    <div class="agent-header"><div class="agent-avatar">S</div><div><div class="agent-name">SAM — Satisfaction Manager Agent</div><div class="agent-role">Calls workers at key moments to check in — before they quit</div></div><span class="avail-badge">Early Access June 2026 · GA July 2026</span></div>
+    <div class="agent-body">
+      <div class="plain-explain"><div class="plain-explain-label">Say this</div>"Most companies find out someone is unhappy when they don't show up. SAM calls workers proactively — at Day 1, 7, 30, 60, 90, and exit. It's a real conversation, not a survey."</div>
+      <ul class="bullet-list">
+        <li>Worker gets a text prompt, then SAM calls — no app, no survey link</li>
+        <li>Flags at-risk workers and surfaces recommended actions for HR</li>
+        <li>Multilingual — meets workers in their preferred language</li>
+      </ul>
+      <div class="two-col"><div class="info-block"><div class="info-block-label">Best fit</div>High-turnover industries. Companies hiring 50+ people/month.</div><div class="info-block"><div class="info-block-label">Talking point</div>"Replacing a frontline worker costs $1,500–$5,000. SAM surfaces problems at Day 7 — when you can still do something about it."</div></div>
+    </div>
+  </div>
+  <div class="agent-card emma">
+    <div class="agent-header"><div class="agent-avatar">E</div><div><div class="agent-name">EMMA — Candidate AI</div><div class="agent-role">Helps new hires complete I-9 &amp; W-4 — without calling HR</div></div><div style="margin-left:auto;"><span class="tag amber">Add-on to ATS</span></div></div>
+    <div class="agent-body">
+      <div class="plain-explain"><div class="plain-explain-label">Say this</div>"New hires get stuck on I-9 and W-4 constantly. EMMA handles inbound calls, answers questions, restarts forms, and sends a magic link to complete everything from their phone."</div>
+      <ul class="bullet-list">
+        <li>Handles inbound calls from confused new hires 24/7</li>
+        <li>Restarts incomplete forms and sends new completion link via SMS</li>
+        <li>Reduces HR time spent on onboarding support calls</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer">Fountain Internal · AE Enablement · June 2026</div>
+</div>
+<div id="page-security" class="page">
+  <div class="page-intro">When a prospect asks about AI security, compliance, or bias — don't guess. Use these lines.</div>
+  <div class="master-line"><div class="master-line-label">Master line — memorize this</div>"Fountain is built to protect global brands. We use Constitutional AI to physically prevent illegal actions in regulated markets like NYC or the EU. We're ISO 42001 certified — the new gold standard specifically for AI systems — and every AI action is explainable with a human always in the loop."</div>
+  <div class="section">
+    <div class="section-header"><div class="section-title">The Three Pillars</div></div>
+    <div class="section-body">
+      <div class="pillar"><div class="pillar-num">Pillar 1</div><div class="pillar-title">Constitutional AI — Anthropic Partnership</div><div class="pillar-body">Compliance is built into the DNA of the system. The system physically prevents non-compliant actions before they happen — it doesn't flag them after, it stops them. NYC Local Law 144, California AI rules, EU AI Act — hard stops, not warnings.</div></div>
+      <div class="pillar"><div class="pillar-num">Pillar 2</div><div class="pillar-title">ISO 42001 Certification</div><div class="pillar-body">The specific global standard for AI Management Systems. SOC 2 = general IT security. ISO 42001 = AI specifically. We have it. Most competitors don't.</div></div>
+      <div class="pillar"><div class="pillar-num">Pillar 3</div><div class="pillar-title">Explainability &amp; Human-in-the-Loop</div><div class="pillar-body">No black box. Every AI output has a plain-language explanation. Example: "Anna gave this candidate a score of 2 because they stated they did not have the required certification." Humans always make the final hiring decision.</div></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header"><div class="section-title">Common Questions &amp; Answers</div></div>
+    <div class="section-body">
+      <div class="qa-item"><div class="qa-question" onclick="toggleQA(this)">"How do you handle bias in AI hiring?" <span class="arrow">&#9660;</span></div><div class="qa-answer">"We run regular third-party bias audits. Anna's questions are written by your team. Candidates can always opt out of AI and choose a human recruiter."</div></div>
+      <div class="qa-item"><div class="qa-question" onclick="toggleQA(this)">"What about EEOC and OFCCP compliance?" <span class="arrow">&#9660;</span></div><div class="qa-answer">"Fountain's AI is designed to comply with U.S. employment law including EEOC guidelines. We track and log every AI interaction for audit purposes."</div></div>
+      <div class="qa-item"><div class="qa-question" onclick="toggleQA(this)">"What happens if the AI makes a bad decision?" <span class="arrow">&#9660;</span></div><div class="qa-answer">"The AI never makes a final decision — a human always does. Your team approves or overrides every recommendation."</div></div>
+      <div class="qa-item"><div class="qa-question" onclick="toggleQA(this)">"Who owns our data?" <span class="arrow">&#9660;</span></div><div class="qa-answer">"You do. Fountain is a processor — you're the controller. We don't train models on your candidates' data."</div></div>
+      <div class="qa-item"><div class="qa-question" onclick="toggleQA(this)">"Is Fountain GDPR compliant?" <span class="arrow">&#9660;</span></div><div class="qa-answer">"Yes. Data minimization, purpose limitation, configurable retention, full support for data subject access requests. See trust.fountain.com."</div></div>
+      <div class="qa-item"><div class="qa-question" onclick="toggleQA(this)">"Are you ISO 42001 certified or working toward it?" <span class="arrow">&#9660;</span></div><div class="qa-answer">"We are certified. Listed on trust.fountain.com."</div></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header"><div class="section-title">Don't Say / Do Say</div></div>
+    <div class="section-body">
+      <div class="dos-donts">
+        <div class="dont-col"><div class="dd-label">&#10060; Don't say</div><div class="dd-item">"Our AI makes hiring decisions."</div><div class="dd-item">"The AI is unbiased."</div><div class="dd-item">"Q handles compliance automatically."</div><div class="dd-item">"We're working toward ISO 42001."</div><div class="dd-item">"Just like ChatGPT..."</div></div>
+        <div class="do-col"><div class="dd-label">&#10004; Do say</div><div class="dd-item">"Our AI recommends. Humans decide."</div><div class="dd-item">"We run regular third-party fairness audits."</div><div class="dd-item">"Constitutional AI prevents non-compliant actions — it's a hard stop."</div><div class="dd-item">"We are ISO 42001 certified."</div><div class="dd-item">"Cue is Fountain's own agentic AI."</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">Fountain Internal · AE Enablement · June 2026</div>
+</div>
+<div id="page-cues" class="page">
+  <div class="page-intro">Your SC runs the demo. Your job is to land the differentiators at the right moment.</div>
+  <div class="ground-rules">
+    <div class="ground-rule"><div class="gr-num">1</div><div class="gr-text">Wait for the SC to finish before you jump in.</div></div>
+    <div class="ground-rule"><div class="gr-num">2</div><div class="gr-text">One line is usually enough — don't over-explain.</div></div>
+    <div class="ground-rule"><div class="gr-num">3</div><div class="gr-text">Deep technical question? Redirect to your SC.</div></div>
+    <div class="ground-rule"><div class="gr-num">4</div><div class="gr-text">If you don't know, say so and follow up after the call.</div></div>
+  </div>
+  <div class="section">
+    <div class="section-header"><div class="section-title">Sourcing Cues</div></div>
+    <div class="section-body">
+      <div class="cue-card"><div class="cue-trigger">When SC shows the sourcing dashboard</div><div class="cue-line">"Most customers came to us managing 6–10 job board logins separately. This is usually the first time they've seen all their spend in one place with actual conversion data."</div><div class="cue-why">Makes the pain concrete.</div></div>
+      <div class="cue-card"><div class="cue-trigger">When SC shows auto-pause on spend</div><div class="cue-line">"If a recruiter posts a job Friday afternoon and goes offline, this stops billing the moment the funnel has enough people. Most companies are paying for clicks they'll never get to."</div><div class="cue-why">Friday afternoon is relatable. Cost is immediately visualized.</div></div>
+      <div class="cue-card"><div class="cue-trigger">When SC shows Cue building a sourcing plan</div><div class="cue-line">"What Cue just did in 30 seconds used to be a conversation with a sourcing specialist or media agency. It's now part of the product."</div><div class="cue-why">Positions Cue as strategic, not just a chatbot.</div></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header"><div class="section-title">ATS Cues</div></div>
+    <div class="section-body">
+      <div class="cue-card"><div class="cue-trigger">When SC shows the recruiter dashboard</div><div class="cue-line">"Most ATS systems show you everything equally. This tells you exactly where to start."</div><div class="cue-why">Speaks to the overwhelmed recruiter in the room.</div></div>
+      <div class="cue-card"><div class="cue-trigger">When SC shows Anna conducting an interview</div><div class="cue-line">"The majority of Anna interviews happen between 9pm and 5am. Your team wakes up with scored, transcribed interviews already done."</div><div class="cue-why">"9pm to 5am" is memorable and specific.</div></div>
+      <div class="cue-card"><div class="cue-trigger">When SC shows the HireGo hiring manager view</div><div class="cue-line">"We built this because hiring managers told us they'd never use the full ATS. This is purpose-built for someone in the field with 5 minutes."</div><div class="cue-why">Validates a frustration they already have.</div></div>
+      <div class="cue-card"><div class="cue-trigger">When SC shows self-scheduling</div><div class="cue-line">"When candidates schedule themselves and get a reminder an hour before, no-show rates drop significantly."</div><div class="cue-why">Ghosting in hourly hiring is universal.</div></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header"><div class="section-title">Onboarding Cues</div></div>
+    <div class="section-body">
+      <div class="cue-card"><div class="cue-trigger">When SC shows mobile onboarding</div><div class="cue-line">"Most frontline workers don't have a company email. Sending a PDF and hoping they complete it before Day 1 — that's still what most companies are doing."</div><div class="cue-why">They probably are too.</div></div>
+      <div class="cue-card"><div class="cue-trigger">When SC shows I-9 pre-populated</div><div class="cue-line">"UPS hit 98% I-9 complete before Day 1 across hundreds of thousands of workers. The key is preventing errors at entry, not catching them after."</div><div class="cue-why">Real proof point with a specific number.</div></div>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header"><div class="section-title">Shift &amp; Scheduling Cues</div></div>
+    <div class="section-body">
+      <div class="cue-card"><div class="cue-trigger">When SC shows Cue building a schedule</div><div class="cue-line">"That's typically a 2–4 hour manual process for a scheduling manager. It just took 30 seconds."</div><div class="cue-why">Specific and believable.</div></div>
+      <div class="cue-card"><div class="cue-trigger">When SC shows the rules engine</div><div class="cue-line">"The rules engine lets you say 'only top performers can see peak-hour shifts' — and enforce it automatically, without a manager having to police it."</div><div class="cue-why">"Without a manager having to police it" is the phrase that registers.</div></div>
+    </div>
+  </div>
+  <div class="footer">Fountain Internal · AE Enablement · June 2026</div>
+</div>
+<div id="page-sku" class="page">
+  <div class="page-intro">Use the SKU map when someone references an old product name. Use the glossary to look up key terms.</div>
+  <div class="section">
+    <div class="section-header"><div class="section-title">Legacy → New SKU Mapping</div></div>
+    <div class="section-body" style="padding:0; overflow-x:auto;">
+      <table class="sku-table">
+        <thead><tr><th>New Product</th><th>Legacy SKUs</th><th>What changed</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Sourcing</strong></td><td><span class="sku-old">Source</span></td><td>No change in scope — renamed.</td></tr>
+          <tr><td><strong>CRM</strong></td><td><span class="sku-old">Pool</span></td><td>Same functionality, cleaner positioning.</td></tr>
+          <tr><td><strong>ATS</strong></td><td><span class="sku-old">Hire, HireGo, Compliance, Referrals</span></td><td>Referrals and Compliance are now features within ATS.</td></tr>
+          <tr><td><strong>Onboarding</strong></td><td><span class="sku-old">Onboard, I-9, Compliance (docs)</span></td><td>I-9 and Compliance docs are now features within Onboarding.</td></tr>
+          <tr><td><strong>Shift &amp; Scheduling</strong></td><td><span class="sku-old">Shift</span></td><td>No change — renamed.</td></tr>
+          <tr><td><strong>Platform Tiers</strong></td><td>—</td><td>Essential / Accelerate / Enterprise — always paired with core products.</td></tr>
+          <tr><td><strong>Anna</strong></td><td><span class="sku-old">AI Rec / AI Recruiter</span></td><td>Standalone Agent. Same product, new name.</td></tr>
+          <tr><td><strong>SAM</strong></td><td>—</td><td>Net-new. Standalone Agent. GA July 2026.</td></tr>
+          <tr><td><strong>EMMA</strong></td><td>—</td><td>Net-new. Candidate AI — Add-on to ATS.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="section">
+    <div class="section-header"><div class="section-title">Key Terms Glossary</div></div>
+    <div class="section-body">
+      <div class="gloss-item"><div class="gloss-term">Agentic AI</div><div class="gloss-def">AI that takes actions — not just surfaces information. Cue posts jobs, builds schedules, sends messages. Generative AI tells you what to do. Agentic AI does it.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Anna</div><div class="gloss-def">Fountain's AI voice interviewer. Scores candidates, returns transcripts and qualifications. Runs standalone or natively inside Fountain ATS.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Constitutional AI</div><div class="gloss-def">Fountain's approach via Anthropic partnership. Compliance built into the system DNA — physically prevents non-compliant actions.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Cue</div><div class="gloss-def">Fountain's AI agent layer. Previously called "Q" or "Copilot." Always say "Cue" — never "Q."</div></div>
+      <div class="gloss-item"><div class="gloss-term">EMMA</div><div class="gloss-def">AI agent helping new hires complete I-9/W-4 via inbound call. Restarts forms, sends magic links, answers FAQs.</div></div>
+      <div class="gloss-item"><div class="gloss-term">Human-in-the-Loop</div><div class="gloss-def">Humans always make final decisions. AI recommends — never decides alone. Non-negotiable across all Fountain AI products.</div></div>
+      <div class="gloss-item"><div class="gloss-term">ISO 42001</div><div class="gloss-def">Global certification standard for AI Management Systems. More targeted than SOC 2. Fountain is certified. Most competitors are not.</div></div>
+      <div class="gloss-item"><div class="gloss-term">SAM</div><div class="gloss-def">AI voice agent for worker check-ins at Day 1, 7, 30, 60, 90, and exit. Flags retention risks before people quit.</div></div>
+    </div>
+  </div>
+  <div class="footer">Fountain Internal · AE Enablement · June 2026 · Questions? Bring to your SC or Sales Enablement lead.</div>
+</div>
+</div>
+<script>
+function showTab(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  event.target.classList.add('active');
+  window.scrollTo(0, 0);
+}
+function toggleQA(el) {
+  el.classList.toggle('open');
+  const ans = el.nextElementSibling;
+  ans.classList.toggle('open');
+}
+</script>
+</body>
+</html>
